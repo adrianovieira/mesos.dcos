@@ -1,0 +1,8 @@
+.DS_Store
+.vagrant
+dcos_generate_config.sh
+*.iso
+packer_cache
+*.msi
+*.exe
+*.msu
