@@ -1,0 +1,17 @@
+---
+agent_list:
+- 192.168.50.11
+- 192.168.50.12
+- 192.168.50.13
+# Use this bootstrap_url value unless you have moved the DC/OS installer assets.
+bootstrap_url: file:///opt/dcos_install_tmp
+cluster_name: mesos_dcos
+master_discovery: static
+master_list:
+- 192.168.50.10
+resolvers:
+- 10.70.124.20
+- 10.0.220.150
+- 10.31.220.21
+ssh_port: 22
+ssh_user: vagrant
