@@ -23,9 +23,6 @@ if [[ "$ID" == "centos" && "$VERSION_ID" == "7" ]]; then
   if [[ "$HTTP_PROXY" != "http://proxy_not_set:3128" ]]; then
     echo "INFO: [dcos-mesos-install.sh] setting DC/OS"
     cd /home/vagrant/dcos-install/
-    echo "pwd [`pwd`]"
-    sudo echo "pwd [`pwd`]"
-
     sudo bash ../shared/dcos_generate_config.sh --genconf && \
       sudo bash ../shared/dcos_generate_config.sh --install-prereqs && \
       sudo bash ../shared/dcos_generate_config.sh --preflight && \
