@@ -19,8 +19,6 @@ if [[ -f /etc/os-release  ]]; then
 fi
 
 if [[ "$ID" == "centos" && "$VERSION_ID" == "7" ]]; then
-
-  if [[ "$HTTP_PROXY" != "http://proxy_not_set:3128" ]]; then
     echo "INFO: [dcos-mesos-install.sh] setting DC/OS"
     cd /home/vagrant/dcos-install/
     sudo bash ../shared/dcos_generate_config.sh --genconf && \
@@ -28,8 +26,6 @@ if [[ "$ID" == "centos" && "$VERSION_ID" == "7" ]]; then
       sudo bash ../shared/dcos_generate_config.sh --preflight && \
       sudo bash ../shared/dcos_generate_config.sh --deploy && \
       sudo bash ../shared/dcos_generate_config.sh --postflight
-  fi
-
 fi
 
 if [[ "$?" == 0 ]]; then
