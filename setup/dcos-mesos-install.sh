@@ -25,16 +25,6 @@ if [[ -f $DCOS_INSTALLER_DIR/dcos_generate_config.sh ]]; then
 fi
 
 if [[ "$ID" == "centos" && "$VERSION_ID" == "7" ]]; then
-  echo "INFO: [dcos-mesos-install.sh] Setting pre-reqs for DC/OS"
-  sudo yum install -y tar xz unzip curl ipset
-  sudo systemctl stop firewalld
-  sudo systemctl disable firewalld
-  sudo sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config
-  sudo setenforce 0
-  sudo groupadd nogroup
-  sudo docker pull nginx
-  sudo yum install -q -y tar xz unzip curl ipset
-
   echo "INFO: [dcos-mesos-install.sh] Deploy DC/OS"
   cd /home/vagrant/dcos-install/
   sudo bash $DCOS_INSTALLER_DIR/dcos_generate_config.sh --genconf && \
