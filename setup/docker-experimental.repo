@@ -1,0 +1,6 @@
+[dockerrepo-experimental]
+name=Docker Repository (experimental)
+baseurl=https://yum.dockerproject.org/repo/experimental/centos/7/
+enabled=0
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg

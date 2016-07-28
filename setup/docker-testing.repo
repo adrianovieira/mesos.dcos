@@ -1,0 +1,6 @@
+[dockerrepo-testing]
+name=Docker Repository (testing)
+baseurl=https://yum.dockerproject.org/repo/testing/centos/7/
+enabled=0
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
