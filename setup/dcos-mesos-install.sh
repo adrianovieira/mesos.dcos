@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 # Copyright 2016 Adriano dos Santos Vieira
 #
@@ -18,14 +18,19 @@ if [[ -f /etc/os-release  ]]; then
   . /etc/os-release
 fi
 
+DCOS_INSTALLER_DIR="/home/vagrant/shared"
+if [[ -f $DCOS_INSTALLER_DIR/dcos_generate_config.sh ]]; then
+  echo "INFO: [dcos-mesos-install.sh] Downloading the DC/OS installer"
+  wget -c https://downloads.dcos.io/dcos/EarlyAccess/dcos_generate_config.sh?_ga=1.34663395.314546777.1469460671 -O $DCOS_INSTALLER_DIR/dcos_generate_config.sh
+fi
+
 if [[ "$ID" == "centos" && "$VERSION_ID" == "7" ]]; then
-    echo "INFO: [dcos-mesos-install.sh] setting DC/OS"
-    cd /home/vagrant/dcos-install/
-    sudo bash ../shared/dcos_generate_config.sh --genconf && \
-      sudo bash ../shared/dcos_generate_config.sh --install-prereqs && \
-      sudo bash ../shared/dcos_generate_config.sh --preflight && \
-      sudo bash ../shared/dcos_generate_config.sh --deploy && \
-      sudo bash ../shared/dcos_generate_config.sh --postflight
+  echo "INFO: [dcos-mesos-install.sh] Deploy DC/OS"
+  cd /home/vagrant/dcos-install/
+  sudo bash $DCOS_INSTALLER_DIR/dcos_generate_config.sh --genconf && \
+    sudo bash $DCOS_INSTALLER_DIR/dcos_generate_config.sh --preflight && \
+    sudo bash $DCOS_INSTALLER_DIR/dcos_generate_config.sh --deploy && \
+    sudo bash $DCOS_INSTALLER_DIR/dcos_generate_config.sh --postflight
 fi
 
 if [[ "$?" == 0 ]]; then
