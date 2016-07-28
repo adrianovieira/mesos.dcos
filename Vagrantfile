@@ -43,16 +43,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     virtualbox.customize [ "modifyvm", :id, "--groups", "/#{OSLV_GROUP}" ]
   end # end Virtualbox.settings
 
-  config.vm.box = "adrianovieira/centos7-docker1.12rc4"
+  config.vm.box = "adrianovieira/centos7-vbox5.0.24"
   config.vm.box_check_update = false
 
   # shared folder between host and VM (may be for development porposes)
   config.vm.synced_folder ".", "/home/vagrant/shared"
 
-  config.vm.provision "docker-setup-storage_driver_overlayfs", type: "shell",
-          path: "setup/docker-setup-storage_driver_overlayfs.sh"
-
-  config.vm.provision "docker-setup-proxy", type: "shell", path: "setup/docker-setup-proxy.sh"
+  config.vm.provision "dcos-mesos-install_prereqs", type: "shell",
+          path: "setup/dcos-mesos-install_prereqs.sh"
 
   config.vm.provision "ssh-id_rsa.pub-setup", type: "shell",
           inline: "sudo cat /home/vagrant/shared/setup/ssh_key-id_rsa.pub >> /home/vagrant/.ssh/authorized_keys"
